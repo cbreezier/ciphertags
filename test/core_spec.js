@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import {Game} from '../src/core';
 
 describe('application logic', () => {
-  describe('setWords', () => {
+  describe('setCards', () => {
     function makeCard(word, team) {
       return fromJS({
         word: word,
