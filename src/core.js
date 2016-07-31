@@ -12,11 +12,11 @@ let Game = {
    *   players: {
    *     red: {
    *       agents: ['bob', 'emily'],
-   *       mastermind: 'arthur'
+   *       mastermind: 'arthur'     // Not present if no mastermind set
    *     },
    *     blue: {
    *       agents: ['ben', 'emma'],
-   *       mastermind: 'austin'
+   *       mastermind: 'austin'     // Not present if no mastermind set
    *     }
    *   },
    *   cards: [
@@ -29,11 +29,11 @@ let Game = {
    *   turn: {
    *     turnNumber: 0,
    *     team: 'red|blue',
-   *     prompt: {
+   *     prompt: {                  // Not present if no prompt set
    *       word: 'animals',
    *       limit: 2
    *     },
-   *     guesses: 1
+   *     guesses: 1                 // Not present if no prompt set
    *   }
    * }
    *
