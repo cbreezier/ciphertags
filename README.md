@@ -14,4 +14,12 @@ Using nodejs v4.0.0 or above:
 
 `npm install`
 
+`npm install -g webpack webpack-dev-server`
+
 `npm run test`
+
+Running backend with socket.io
+`npm run start`
+
+Serving frontend resources
+`webpack && webpack-dev-server`
