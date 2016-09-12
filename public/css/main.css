@@ -1,0 +1,13 @@
+.cards {
+    border: 1px solid blue;
+}
+
+.card {
+    border: 1px solid grey;
+    display: inline-block;
+    padding: 20px;
+}
+
+.row {
+    display: block;
+}

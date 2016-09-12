@@ -1,6 +1,6 @@
 module.exports = {
   entry: [
-    './src/client/index.js'
+    './src/client/index.jsx'
   ],
   module: {
     loaders: [{
