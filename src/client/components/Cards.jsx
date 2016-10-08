@@ -8,9 +8,12 @@ export default React.createClass({
     for (let i = 0; i < 5; i++) {
       let row = [];
       for (let j = 0; j < 5; j++) {
+	var curr_card = this.props.cards[i * 5 + j];
         row.push({
           key: j,
-          word: this.props.cards[i*5 + j]
+          word: curr_card.word,
+          team: curr_card.team,
+          revealed: curr_card.revealed
         });
       }
       cards.push({
@@ -22,7 +25,8 @@ export default React.createClass({
              {cards.map(row =>
                <div key={row.key} className="row">
                  {row.cards.map(card =>
-                   <Card key={card.key} word={card.word}/>
+                   <Card key={card.key} word={card.word}
+			team={card.team} revealed={card.revealed}/>
                  )}
                </div>
              )}
