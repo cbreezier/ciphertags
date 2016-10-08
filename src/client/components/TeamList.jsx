@@ -19,16 +19,20 @@ export default React.createClass({
     return this.props.teamMembers.indexOf(this.props.currentUser) === -1;
   },
   render: function() {
-    return <div className="teamList">
+    return <div className={`teamList ${this.props.team}`}>
              {
-               this.props.mastermind ||
-               <JoinTeam text='Be Mastermind'
+               this.props.mastermind ?
+               <TeamMember username={this.props.mastermind}
+                           currentUser={this.props.currentUser}/> :
+               <JoinTeam text='Mastermind'
                          callback={this.props.setMastermind.bind(undefined, this.props.team)}/>
              }
              <hr/>
              {
                this.props.teamMembers.map(teamMember =>
-                 <TeamMember key={teamMember} username={teamMember}/>
+                 <TeamMember key={teamMember}
+                             username={teamMember}
+                             currentUser={this.props.currentUser}/>
                )
              }
              {

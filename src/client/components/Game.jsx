@@ -18,19 +18,28 @@ import TeamList from './TeamList';
  */
 export default React.createClass({
   render: function() {
-    return <div id="game">
+    return <div id='game'>
              <Cards cards={this.props.cards}/>
-             <TeamList team='red'
-                       mastermind='jane'
-                       teamMembers={['bob', 'john']}
-                       currentUser={this.props.currentUser}
-                       joinTeam={this.props.joinTeam}
-                       setMastermind={this.props.setMastermind}/>
-             <TeamList team='blue'
-                       teamMembers={['adam', 'michelle']}
-                       currentUser={this.props.currentUser}
-                       joinTeam={this.props.joinTeam}
-                       setMastermind={this.props.setMastermind}/>
+             <div className='row userSection'>
+               <div className='col-md-3'></div>
+               <div className='col-md-2'>
+                 <TeamList team='red'
+                           mastermind='jane'
+                           teamMembers={['bob', 'john']}
+                           currentUser={this.props.currentUser}
+                           joinTeam={this.props.joinTeam}
+                           setMastermind={this.props.setMastermind}/>
+               </div>
+               <div className='col-md-2'></div>
+               <div className='col-md-2'>
+                 <TeamList team='blue'
+                           teamMembers={['adam', 'michelle']}
+                           currentUser={this.props.currentUser}
+                           joinTeam={this.props.joinTeam}
+                           setMastermind={this.props.setMastermind}/>
+               </div>
+               <div className='col-md-3'></div>
+             </div>
            </div>;
   }
 });

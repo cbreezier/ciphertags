@@ -8,8 +8,8 @@ import React from 'react';
  */
 export default React.createClass({
   render: function() {
-    return <button className="joinTeam" onClick={this.props.callback}>
-             {this.props.text}
-           </button>;
+    return <div className="joinTeam" onClick={this.props.callback}>
+             {'+ ' + this.props.text}
+           </div>;
   }
 });
