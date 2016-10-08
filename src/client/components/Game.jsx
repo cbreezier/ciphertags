@@ -3,11 +3,34 @@ import React from 'react';
 import Cards from './Cards';
 import TeamList from './TeamList';
 
+/**
+ * {
+ *   cards: [
+ *     {
+ *       word: 'rat',
+ *       team: 'red|blue|assassin|civilian',
+ *       revealed: true|false
+ *     }
+ *   ],
+ *   joinTeam: function(team),
+ *   setMastermind: function(team),
+ *   currentUser: 'adam'
+ */
 export default React.createClass({
   render: function() {
     return <div id="game">
              <Cards cards={this.props.cards}/>
-             <TeamList mastermind='jane' teamMembers={['bob', 'john']}/>
+             <TeamList team='red'
+                       mastermind='jane'
+                       teamMembers={['bob', 'john']}
+                       currentUser={this.props.currentUser}
+                       joinTeam={this.props.joinTeam}
+                       setMastermind={this.props.setMastermind}/>
+             <TeamList team='blue'
+                       teamMembers={['adam', 'michelle']}
+                       currentUser={this.props.currentUser}
+                       joinTeam={this.props.joinTeam}
+                       setMastermind={this.props.setMastermind}/>
            </div>;
   }
 });

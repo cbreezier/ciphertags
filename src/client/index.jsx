@@ -137,6 +137,9 @@ const cards = [
 ];
 
 ReactDOM.render(
-  <Game cards={cards}/>,
+  <Game cards={cards}
+        currentUser='adam'
+        joinTeam={() => {}}
+        setMastermind={() => {}}/>,
   document.getElementById('app')
 );
