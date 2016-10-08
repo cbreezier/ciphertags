@@ -28,7 +28,7 @@ export default React.createClass({
              <hr/>
              {
                this.props.teamMembers.map(teamMember =>
-                 <TeamMember username={teamMember}/>
+                 <TeamMember key={teamMember} username={teamMember}/>
                )
              }
              {
