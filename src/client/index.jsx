@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Cards from './components/Cards';
+import Game from './components/Game';
 
 const cards = [
   'Word',
@@ -32,6 +32,6 @@ const cards = [
 ];
 
 ReactDOM.render(
-  <Cards cards={cards}/>,
-  document.getElementById('cardSection')
+  <Game cards={cards}/>,
+  document.getElementById('app')
 );
