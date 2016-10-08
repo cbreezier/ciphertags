@@ -1,5 +1,7 @@
 Ciphertags
 ==========
+
+[![Join the chat at https://gitter.im/ciphertags/Lobby](https://badges.gitter.im/ciphertags/Lobby.svg)](https://gitter.im/ciphertags/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Implementation of the board game "Codenames" as a webapp, using
  - React
  - Redux
