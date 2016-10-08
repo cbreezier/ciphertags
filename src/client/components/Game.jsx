@@ -19,7 +19,10 @@ import TeamList from './TeamList';
 export default React.createClass({
   render: function() {
     return <div id='game'>
-             <Cards cards={this.props.cards}/>
+             <div className='cardSection'>
+               <Cards cards={this.props.cards}/>
+             </div>
+
              <div className='row userSection'>
                <div className='col-md-3'></div>
                <div className='col-md-2'>

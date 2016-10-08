@@ -14,7 +14,9 @@ export default React.createClass({
 			classes = classes + this.props.team;
 		}
     return <div className={classes}>
-             {this.props.word}
+             <div className='cardInner'>
+               {this.props.word}
+             </div>
            </div>;
   }
 });

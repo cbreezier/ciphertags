@@ -120,7 +120,7 @@ const cards = [
 		revealed: true
 	},
   {
-		word: 'Word',
+		word: 'Washington',
 		team: 'red',
 		revealed: false
 	},
