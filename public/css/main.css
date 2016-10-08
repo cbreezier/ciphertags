@@ -4,7 +4,7 @@
 .cards {
     display: table;
     border-collapse: separate;
-    border-spacing: 18px;
+    border-spacing: 14px;
     margin: 0 auto;
 
     border: 1px dotted blue; /* Testing */
@@ -37,6 +37,19 @@
     font-weight: bold;
     font-size: 12px;
     text-transform: uppercase;
+}
+
+.card.civilian {
+    box-shadow: 0 0 0 4px grey;
+}
+.card.red {
+    box-shadow: 0 0 0 4px red;
+}
+.card.blue {
+    box-shadow: 0 0 0 4px blue;
+}
+.card.assassin {
+    box-shadow: 0 0 0 4px black;
 }
 
 .userSection {

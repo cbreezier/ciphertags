@@ -7,7 +7,7 @@ const cards = [
   //0
   {
 		word: 'Word',
-		team: 'red',
+		team: 'civilian',
 		revealed: true
 	},
   {
@@ -17,17 +17,17 @@ const cards = [
 	},
   {
 		word: 'Word',
-		team: 'red',
+		team: 'civilian',
 		revealed: true
 	},
   {
 		word: 'Word',
-		team: 'red',
+		team: 'civilian',
 		revealed: true
 	},
   {
 		word: 'Word',
-		team: 'red',
+		team: 'civilian',
 		revealed: true
 	},
   //5
@@ -38,7 +38,12 @@ const cards = [
 	},
   {
 		word: 'Word',
-		team: 'red',
+		team: 'civilian',
+		revealed: true
+	},
+  {
+		word: 'Word',
+		team: 'civilian',
 		revealed: true
 	},
   {
@@ -48,12 +53,7 @@ const cards = [
 	},
   {
 		word: 'Word',
-		team: 'red',
-		revealed: true
-	},
-  {
-		word: 'Word',
-		team: 'red',
+		team: 'civilian',
 		revealed: true
 	},
   //10
@@ -69,17 +69,17 @@ const cards = [
 	},
   {
 		word: 'Word',
-		team: 'red',
+		team: 'civilian',
 		revealed: true
 	},
   {
 		word: 'Word',
-		team: 'red',
+		team: 'civilian',
 		revealed: true
 	},
   {
 		word: 'Word',
-		team: 'red',
+		team: 'civilian',
 		revealed: true
 	},
   //15
@@ -90,7 +90,7 @@ const cards = [
 	},
   {
 		word: 'Word',
-		team: 'Assassin',
+		team: 'assassin',
 		revealed: true
 	},
   {
@@ -116,7 +116,7 @@ const cards = [
 	},
   {
 		word: 'Word',
-		team: 'Assassin',
+		team: 'assassin',
 		revealed: true
 	},
   {
