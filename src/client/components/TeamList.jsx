@@ -11,10 +11,16 @@ import JoinTeam from './JoinTeam';
  *   currentUser: 'adam',
  *
  *   joinTeam: function(team)
- *   setMastermind: function(team)
+ *   setMastermind: function(team, player)
  * }
  */
 export default React.createClass({
+  setMastermind: function() {
+    this.props.setMastermind(this.props.team, this.props.currentUser);
+  },
+  joinTeam: function() {
+    this.props.joinTeam(this.props.team, this.props.currentUser);
+  },
   canJoinTeam: function() {
     return this.props.teamMembers.indexOf(this.props.currentUser) === -1;
   },
@@ -25,7 +31,7 @@ export default React.createClass({
                <TeamMember username={this.props.mastermind}
                            currentUser={this.props.currentUser}/> :
                <JoinTeam text='Mastermind'
-                         callback={this.props.setMastermind.bind(undefined, this.props.team)}/>
+                         callback={this.setMastermind}/>
              }
              <hr/>
              {
@@ -38,7 +44,7 @@ export default React.createClass({
              {
                this.canJoinTeam() ?
                <JoinTeam text='Join Team'
-                         callback={this.props.joinTeam.bind(undefined, this.props.team)}/>
+                         callback={this.joinTeam}/>
                : ''
              }
            </div>;

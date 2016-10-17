@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import io from 'socket.io-client';
 
 import Game from './components/Game';
+
+const socket = io(`${location.protocol}//${location.hostname}:8090`);
 
 const cards = [
   //0
@@ -138,8 +141,21 @@ const cards = [
 
 ReactDOM.render(
   <Game cards={cards}
-        currentUser='adam'
-        joinTeam={() => {}}
-        setMastermind={() => {}}/>,
+    currentUser='adam'
+    joinTeam={(team, player) => {
+      socket.emit('action', {
+        type: 'JOIN_TEAM',
+        team: team,
+        player, player
+      });
+    }}
+    setMastermind={(team, player) => {
+      socket.emit('action', {
+        type: 'SET_MASTERMIND',
+        team: team,
+        player: player
+      });
+    }}
+    socket={socket}/>,
   document.getElementById('app')
 );

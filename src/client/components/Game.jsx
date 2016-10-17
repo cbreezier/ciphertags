@@ -4,6 +4,7 @@ import Cards from './Cards';
 import TeamList from './TeamList';
 
 /**
+ * state:
  * {
  *   cards: [
  *     {
@@ -17,27 +18,49 @@ import TeamList from './TeamList';
  *   currentUser: 'adam'
  */
 export default React.createClass({
+  componentDidMount: function() {
+    this.props.socket.on('state', (state) => {
+      console.log(state);
+      this.setState(state);
+    });
+  },
+  getInitialState: function() {
+    // TODO fix this up properly
+    return {
+      players: {
+        red: {
+          agents: [],
+        },
+        blue: {
+          agents: [],
+        }
+      },
+      cards: this.props.cards,
+      currentUser: this.props.currentUser
+    };
+  },
   render: function() {
     return <div id='game'>
              <div className='cardSection'>
-               <Cards cards={this.props.cards}/>
+               <Cards cards={this.state.cards}/>
              </div>
 
              <div className='row userSection'>
                <div className='col-md-3'></div>
                <div className='col-md-2'>
                  <TeamList team='red'
-                           mastermind='jane'
-                           teamMembers={['bob', 'john']}
-                           currentUser={this.props.currentUser}
+                           mastermind={this.state.players.red.mastermind}
+                           teamMembers={this.state.players.red.agents}
+                           currentUser={this.state.currentUser}
                            joinTeam={this.props.joinTeam}
                            setMastermind={this.props.setMastermind}/>
                </div>
                <div className='col-md-2'></div>
                <div className='col-md-2'>
                  <TeamList team='blue'
-                           teamMembers={['adam', 'michelle']}
-                           currentUser={this.props.currentUser}
+                           mastermind={this.state.players.blue.mastermind}
+                           teamMembers={this.state.players.blue.agents}
+                           currentUser={this.state.currentUser}
                            joinTeam={this.props.joinTeam}
                            setMastermind={this.props.setMastermind}/>
                </div>
