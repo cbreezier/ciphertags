@@ -139,9 +139,11 @@ const cards = [
 	}
 ];
 
+let urlParams = new URLSearchParams(location.search);
+
 ReactDOM.render(
   <Game cards={cards}
-    currentUser='adam'
+    currentUser={urlParams.get('user') || 'adam'}
     joinTeam={(team, player) => {
       socket.emit('action', {
         type: 'JOIN_TEAM',
