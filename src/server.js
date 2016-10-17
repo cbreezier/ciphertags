@@ -1,7 +1,7 @@
 import server from 'socket.io'
 
 export default function startServer(store) {
-  const io = new server().attach(8080);
+  const io = new server().attach(8090);
 
   store.subscribe(
     () => io.emit('state', store.getState().toJS())
@@ -16,6 +16,11 @@ export default function startServer(store) {
     //
     // We bind the correct 'this' context for the store instead
     // of letting it inherit the current 'this'
-    socket.on('action', store.dispatch.bind(store));
+    socket.on('action', (data) => {
+      console.log('Received', data);
+      store.dispatch.call(store, data);
+      console.log('State is now', store.getState());
+      console.log();
+    });
   });
 }

@@ -172,7 +172,7 @@ describe('application logic', () => {
       }));
     });
 
-    it('does not set mastermind if player is not an agent', () => {
+    it('does set mastermind if player is not an agent', () => {
       let players = Map();
       players = Game.joinTeam(players, Game.TEAM_RED, 'albert');
       players = Game.joinTeam(players, Game.TEAM_RED, 'emma');
@@ -180,14 +180,15 @@ describe('application logic', () => {
 
       expect(players).to.equal(Map({
         red: Map({
-          agents: List.of('albert', 'emma')
+          agents: List.of('albert', 'emma'),
+          mastermind: 'bob'
         })
       }));
     });
   });
 
   describe('unsetMastermind', () => {
-    it('changes a player from mastermind to agent', () => {
+    it('remoevs a player from mastermind', () => {
       let players = Map();
       players = Game.joinTeam(players, Game.TEAM_RED, 'albert');
       players = Game.joinTeam(players, Game.TEAM_RED, 'emma');
@@ -204,7 +205,7 @@ describe('application logic', () => {
 
       expect(players).to.equal(Map({
         red: Map({
-          agents: List.of('albert', 'emma')
+          agents: List.of('albert')
         })
       }));
     });

@@ -4,6 +4,16 @@ function otherTeam(team) {
   return team === Game.TEAM_RED ? Game.TEAM_BLUE : Game.TEAM_RED;
 }
 
+function leaveAll(players, player) {
+  // Remove from mastermind role in other team if mastermind
+  // Remove from a team's agents if currently so
+  [Game.TEAM_RED, Game.TEAM_BLUE].forEach(team => {
+    players = Game.leaveTeam(players, team, player);
+    players = Game.unsetMastermind(players, team, player);
+  });
+  return players;
+}
+
 let Game = {
   /*
    * Represents the game state, which looks something like:
@@ -49,34 +59,37 @@ let Game = {
   },
 
   joinTeam: (players, team, player) => {
+    players = leaveAll(players, player);
+    
     return players.updateIn([team, 'agents'],
       List(),
       agents => agents.push(player)
     );
   },
 
+  leaveTeam: (players, team, player) => {
+    if (players.getIn([team, 'agents'], List()).includes(player)) {
+      players = players.updateIn([team, 'agents'],
+        List(),
+        agents => agents.filter(agent => agent !== player)
+      );
+    }
+    return players;
+  },
+
   setMastermind: (players, team, player) => {
     if (!players.hasIn([team, 'mastermind'])) {
-      let agents = players.getIn([team, 'agents'])
-      if (agents && agents.includes(player)) {
-        // Remove player from agents list
-        players = players.updateIn(
-          [team, 'agents'],
-          agents => agents.filter(agent => agent !== player)
-        )
-        // Set mastermind to player
-        players = players.setIn([team, 'mastermind'], player);
-      }
+      players = leaveAll(players, player);
+      // Set mastermind to player
+      players = players.setIn([team, 'mastermind'], player);
     }
 
     return players;
   },
 
   unsetMastermind: (players, team, player) => {
-    if (players.hasIn([team, 'mastermind'])) {
-      const mastermind = players.getIn([team, 'mastermind']);
+    if (players.getIn([team, 'mastermind']) === player) {
       players = players.deleteIn([team, 'mastermind']);
-      players = players.updateIn([team, 'agents'], agents => agents.push(mastermind));
     }
 
     return players;

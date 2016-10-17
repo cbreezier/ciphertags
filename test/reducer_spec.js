@@ -55,4 +55,25 @@ describe('reducer', () => {
       cards: cards
     }));
   });
+
+  it('handles SET_MASTERMIND', () => {
+    const action = {type: 'SET_MASTERMIND', team: 'red', player: 'adam'};
+    const nextState = reducer(undefined, action);
+
+    expect(nextState).to.equal(Map({
+      players: Map({
+        red: Map({
+          agents: List(),
+          mastermind: 'adam'
+        }),
+        blue: Map({
+          agents: List()
+        })
+      }),
+      turn: Map({
+        turnNumber: 0,
+        team: Game.TEAM_RED
+      })
+    }));
+  });
 });
