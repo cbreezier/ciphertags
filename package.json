@@ -7,8 +7,7 @@
     "start": "babel-node index.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
     "test:watch": "npm run test -- --watch",
-    "client-test": "mocha --compilers js:babel-core/register --require ./test/client/test_helper.js \"test/client/**/*@(.js|.jsx)\"",
-    "client-test:watch": "npm run client-test -- --watch"
+    "client-test": "mocha --compilers js:babel-core/register --require ./test/client/test_helper.js \"test/client/**/*@(.js|.jsx)\""
   },
   "keywords": [],
   "author": "",
@@ -35,6 +34,7 @@
   "dependencies": {
     "immutable": "^3.8.1",
     "react": "^15.3.1",
+    "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.3.1",
     "redux": "^3.5.2",
     "socket.io": "^1.4.8",
