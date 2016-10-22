@@ -9,19 +9,13 @@ import {expect} from 'chai';
 import Cards from '../../../src/client/components/Cards';
 
 describe('Cards', () => {
-  it('renders exactly 25 cards with correct fields', () => {
+  it('renders exactly 25 cards with correct word', () => {
     const card = {
       word: "word",
       team: "red",
-      revealed: true
+      revealed: false
     };
-    const cards = [card, card, card, card, card,
-                  card, card, card, card, card,
-                  card, card, card, card, card,
-                  card, card, card, card, card,
-                  card, card, card, card, card,
-                  card, card, card, card, card
-                  ];
+    const cards = Array(30).fill(card);
     const component = renderIntoDocument(
       <Cards cards={cards} />  
     );
@@ -29,9 +23,25 @@ describe('Cards', () => {
     const cardsDOM = findRenderedDOMComponentWithClass(component, "cards");
     const cardDOMs = scryRenderedDOMComponentsWithClass(component, "card");
     expect(cardDOMs.length).to.equal(25);
-    cardDOMs.forEach((cardDOM) => {
-      expect(cardDOM.textContent).to.equal(card.word);
-      expect(cardDOM.className).to.equal("card red");
-    });
+    expect(cardDOMs[0].textContent).to.equal(card.word);
+    expect(cardDOMs[0].className).to.equal("card ");
   });
+
+  it('renders team if card is revealed', () => {
+    const card = {
+      word: "word",
+      team: "red",
+      revealed: true
+    };
+    const cards = Array(25).fill(card);
+    const component = renderIntoDocument(
+      <Cards cards={cards} />  
+    );
+
+    const cardsDOM = findRenderedDOMComponentWithClass(component, "cards");
+    const cardDOMs = scryRenderedDOMComponentsWithClass(component, "card");
+    expect(cardDOMs.length).to.equal(25);
+    expect(cardDOMs[0].className).to.equal("card red");
+  });
+
 });
