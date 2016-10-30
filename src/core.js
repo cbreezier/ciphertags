@@ -44,7 +44,8 @@ let Game = {
    *       limit: 2
    *     },
    *     guesses: 1                 // Not present if no prompt set
-   *   }
+   *   },
+   *   winner : 'red|blue'          // Not present if neither team has won yet
    * }
    *
    */
@@ -113,16 +114,31 @@ let Game = {
 
     if (card.get('team') === turn.get('team')) {
       game = game.updateIn(['turn', 'guesses'], guesses => guesses + 1);
+      // Checking if greater than, as opposed to equal to, due to codename's 1 extra guess
+      // if all are guessed correctly.
       if (game.getIn(['turn', 'guesses']) > game.getIn(['turn', 'prompt', 'limit'])) {
         game = game.update('turn', Game.nextTurn);
       }
     } else if (card.get('team') === Game.ASSASSIN) {
-      game = setWinner(game, otherTeam(turn.get('team')));
+      game = Game.setWinner(game, otherTeam(turn.get('team')));
     } else {
       game = game.update('turn', Game.nextTurn);
     }
 
-    // TODO check if someone won
+    // Check if someone won
+    if (card.get('team') != Game.ASSASSIN) {
+      [Game.TEAM_RED, Game.TEAM_BLUE].forEach(team => {
+        let teamHasWon = true;
+        game.get('cards').forEach(card => {
+          if (card.get('team') == team && card.get('revealed') == false) {
+            teamHasWon = false;
+          }
+        });
+        if (teamHasWon == true) {
+          game = Game.setWinner(game, turn.get('team'));
+        }
+      });
+    }
 
     return game;
   },
