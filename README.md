@@ -25,3 +25,7 @@ Running backend with socket.io
 
 Serving frontend resources
 `webpack && webpack-dev-server`
+
+Run frontend tests
+`npm run client-test`
+
