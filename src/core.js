@@ -126,17 +126,19 @@ let Game = {
     }
 
     // Check if someone won
-    [Game.TEAM_RED, Game.TEAM_BLUE].forEach(team => {
-      let team_has_won = true;
-      game.get('cards').forEach(card => {
-        if (card.get('team') == team && card.get('revealed') == false) {
-          team_has_won = false;
+    if (card.get('team') != Game.ASSASSIN) {
+      [Game.TEAM_RED, Game.TEAM_BLUE].forEach(team => {
+        let teamHasWon = true;
+        game.get('cards').forEach(card => {
+          if (card.get('team') == team && card.get('revealed') == false) {
+            teamHasWon = false;
+          }
+        });
+        if (teamHasWon == true) {
+          game = Game.setWinner(game, turn.get('team'));
         }
       });
-      if (team_has_won == true) {
-        game = Game.setWinner(game, turn.get('team'));
-      }
-    });
+    }
 
     return game;
   },
