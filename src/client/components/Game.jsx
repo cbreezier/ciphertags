@@ -13,8 +13,7 @@ import TeamList from './TeamList';
  *       revealed: true|false
  *     }
  *   ],
- *   joinTeam: function(team),
- *   setMastermind: function(team),
+ *   sendToServer: function(message),
  *   currentUser: 'adam'
  */
 export default React.createClass({
@@ -52,8 +51,7 @@ export default React.createClass({
                            mastermind={this.state.players.red.mastermind}
                            teamMembers={this.state.players.red.agents}
                            currentUser={this.state.currentUser}
-                           joinTeam={this.props.joinTeam}
-                           setMastermind={this.props.setMastermind}/>
+                           sendToServer={this.props.sendToServer}/>
                </div>
                <div className='col-md-2'></div>
                <div className='col-md-2'>
@@ -62,7 +60,7 @@ export default React.createClass({
                            teamMembers={this.state.players.blue.agents}
                            currentUser={this.state.currentUser}
                            joinTeam={this.props.joinTeam}
-                           setMastermind={this.props.setMastermind}/>
+                           sendToServer={this.props.sendToServer}/>
                </div>
                <div className='col-md-3'></div>
              </div>

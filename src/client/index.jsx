@@ -144,19 +144,8 @@ let urlParams = new URLSearchParams(location.search);
 ReactDOM.render(
   <Game cards={cards}
     currentUser={urlParams.get('user') || 'adam'}
-    joinTeam={(team, player) => {
-      socket.emit('action', {
-        type: 'JOIN_TEAM',
-        team: team,
-        player, player
-      });
-    }}
-    setMastermind={(team, player) => {
-      socket.emit('action', {
-        type: 'SET_MASTERMIND',
-        team: team,
-        player: player
-      });
+    sendToServer={(message) => {
+      socket.emit('action', message);
     }}
     socket={socket}/>,
   document.getElementById('app')

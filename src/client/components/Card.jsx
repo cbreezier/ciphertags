@@ -9,10 +9,10 @@ import React from 'react';
  */
 export default React.createClass({
   render: function() {
-		var classes = "card ";
-		if (this.props.revealed === true) {
-			classes = classes + this.props.team;
-		}
+    var classes = "card ";
+    if (this.props.revealed === true) {
+      classes = classes + this.props.team;
+    }
     return <div className={classes}>
              <div className='cardInner'>
                {this.props.word}

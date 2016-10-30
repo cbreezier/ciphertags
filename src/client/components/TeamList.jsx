@@ -10,16 +10,23 @@ import JoinTeam from './JoinTeam';
  *   teamMembers: ['bob',],
  *   currentUser: 'adam',
  *
- *   joinTeam: function(team)
- *   setMastermind: function(team, player)
+ *   sendToServer: function(message)
  * }
  */
 export default React.createClass({
   setMastermind: function() {
-    this.props.setMastermind(this.props.team, this.props.currentUser);
+    this.props.sendToServer({
+      type: 'SET_MASTERMIND',
+      team: this.props.team,
+      player: this.props.currentUser
+    });
   },
   joinTeam: function() {
-    this.props.joinTeam(this.props.team, this.props.currentUser);
+    this.props.sendToServer({
+      type: 'JOIN_TEAM',
+      team: this.props.team,
+      player: this.props.currentUser
+    });
   },
   canJoinTeam: function() {
     return this.props.teamMembers.indexOf(this.props.currentUser) === -1;
