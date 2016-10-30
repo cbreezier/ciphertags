@@ -105,16 +105,13 @@ describe('application logic', () => {
 
       expect(game).to.equal(Map({
         cards: List.of(
-          makeCard('fish', Game.TEAM_RED),
+          makeCard('fish', Game.TEAM_RED, true),
           makeCard('bottle', Game.TEAM_BLUE, true),
-          makeCard('bin', Game.ASSASSIN),
+          makeCard('bin', Game.ASSASSIN, true),
           makeCard('cup', Game.TEAM_BLUE, true),
           makeCard('tube', Game.TEAM_BLUE, true)
         ),
-        turn: Map({
-          turnNumber: 2,
-          team: Game.TEAM_RED,
-        })
+        winner: Game.TEAM_BLUE
       }));
     });
   });
