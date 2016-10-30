@@ -102,8 +102,8 @@ describe('TeamList', () => {
                 mastermind={"kimberley"}
                 teamMembers={teamMembers}
                 currentUser={"kimberly"}
-                joinTeam={join}
-                setMastermind={null} />
+                sendToServer={join}
+                />
     );
 
     const joinTeam = findRenderedDOMComponentWithClass(component, "joinTeam");
@@ -119,8 +119,7 @@ describe('TeamList', () => {
       <TeamList team={"blue"}
                 teamMembers={teamMembers}
                 currentUser={"kimberly"}
-                joinTeam={null}
-                setMastermind={set} />
+                sendToServer={set} />
     );
 
     const joinTeam = findRenderedDOMComponentWithClass(component, "joinTeam");
