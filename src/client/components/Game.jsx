@@ -41,7 +41,7 @@ export default React.createClass({
   render: function() {
     return <div id='game'>
              <div className='cardSection'>
-               <Cards cards={this.state.cards}/>
+               <Cards cards={this.state.cards} sendToServer={this.props.sendToServer}/>
              </div>
 
              <div className='row userSection'>
