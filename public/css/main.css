@@ -19,9 +19,17 @@
     height: 50px;
     border-radius: 5px;
 
-    background-color: #E0E2D4;;
+    background-color: #E0E2D4;
     border: 1px solid #CFC7AF;
     box-shadow: 0 0 0 4px #E0E2D4;
+
+    cursor: pointer;
+}
+.card:hover {
+    background-color: #D0D2C4;
+}
+.card:active {
+    background-color: #C0C2B4;
 }
 .cardInner {
     position: absolute;
