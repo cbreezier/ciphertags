@@ -2,6 +2,12 @@ import React from 'react';
 
 import Card from './Card';
 
+/**
+ * {
+ *   cards: [],
+ *   
+ *   sendToServer: function(message)
+ */
 export default React.createClass({
   render: function() {
     let cards = [];
@@ -10,7 +16,7 @@ export default React.createClass({
       for (let j = 0; j < 5; j++) {
         let curr_card = this.props.cards[i * 5 + j];
         row.push({
-          key: j,
+          index: i * 5 + j,
           word: curr_card.word,
           team: curr_card.team,
           revealed: curr_card.revealed
@@ -25,10 +31,12 @@ export default React.createClass({
              {cards.map(row =>
                <div key={row.key} className='cardRow'>
                  {row.cards.map(card =>
-                   <Card key={card.key}
+                   <Card key={card.index}
+                         index={card.index}
                          word={card.word}
                          team={card.team}
-                         revealed={card.revealed}/>
+                         revealed={card.revealed}
+                         sendToServer={this.props.sendToServer}/>
                  )}
                </div>
              )}
