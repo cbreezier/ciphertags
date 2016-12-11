@@ -94,38 +94,37 @@ describe('TeamList', () => {
   });
 
   it('calls the join team callback', () => {
-    let joinInvoked = false;
-    const join = () => joinInvoked = true;
+    let callbackInvoked = false;
+    const cb = () => callbackInvoked = true;
     const teamMembers = ["anna", "emma", "irene"];
     const component = renderIntoDocument(
       <TeamList team={"blue"}
                 mastermind={"kimberley"}
                 teamMembers={teamMembers}
                 currentUser={"kimberly"}
-                joinTeam={join}
-                setMastermind={null} />
+                sendToServer={cb}
+                />
     );
 
     const joinTeam = findRenderedDOMComponentWithClass(component, "joinTeam");
     Simulate.click(joinTeam);
-    expect(joinInvoked).to.equal(true);
+    expect(callbackInvoked).to.equal(true);
   });
 
   it('calls the set mastermind callback', () => {
-    let setInvoked = false;
-    const set = () => setInvoked = true;
+    let callbackInvoked = false;
+    const cb = () => callbackInvoked = true;
     const teamMembers = ["kimberly", "anna", "emma", "irene"];
     const component = renderIntoDocument(
       <TeamList team={"blue"}
                 teamMembers={teamMembers}
                 currentUser={"kimberly"}
-                joinTeam={null}
-                setMastermind={set} />
+                sendToServer={cb} />
     );
 
     const joinTeam = findRenderedDOMComponentWithClass(component, "joinTeam");
     Simulate.click(joinTeam);
-    expect(setInvoked).to.equal(true);
+    expect(callbackInvoked).to.equal(true);
   });
 });
 
