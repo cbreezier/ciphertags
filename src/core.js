@@ -1,4 +1,5 @@
 import {Map, List, fromJS} from 'immutable';
+import * as util from './util';
 
 function otherTeam(team) {
   return team === Game.TEAM_RED ? Game.TEAM_BLUE : Game.TEAM_RED;
@@ -166,6 +167,7 @@ export {
 }
 
 export const INITIAL_STATE = Map({
+  cards: util.generateRandomCards(),
   players: Map({
     red: Map({
       agents: List()
