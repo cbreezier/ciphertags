@@ -127,16 +127,15 @@ let Game = {
 
     // Check if someone won
     if (card.get('team') != Game.ASSASSIN) {
-      [Game.TEAM_RED, Game.TEAM_BLUE].forEach(team => {
-        let teamHasWon = true;
-        game.get('cards').forEach(card => {
-          if (card.get('team') == team && card.get('revealed') == false) {
-            teamHasWon = false;
-          }
+      [Game.TEAM_RED, Game.TEAM_BLUE].some(team => {
+        let cardNotRevealed = game.get('cards').some(card => {
+          return (card.get('team') === team && card.get('revealed') === false);
         });
-        if (teamHasWon == true) {
+        if (cardNotRevealed == false) {
           game = Game.setWinner(game, turn.get('team'));
+          return true;
         }
+        return false;
       });
     }
 
