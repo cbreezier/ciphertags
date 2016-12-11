@@ -40,7 +40,8 @@ describe('store', () => {
       turn: Map({
         turnNumber: 0,
         team: Game.TEAM_RED
-      })
+      }),
+      chat: List()
     }));
   });
 });

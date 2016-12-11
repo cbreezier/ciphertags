@@ -46,7 +46,15 @@ let Game = {
    *     },
    *     guesses: 1                 // Not present if no prompt set
    *   },
-   *   winner : 'red|blue'          // Not present if neither team has won yet
+   *   winner: 'red|blue',         // Not present if neither team has won yet
+   *   chat: [
+   *     {
+   *       timestamp: '1266272460', // Javascript timestamp (Unix timestamp
+   *                                //     in milliseconds)
+   *       user: 'cat',             // Length limited to 20 chars
+   *       message: 'meow'          // Length limited to 200 chars
+   *     }
+   *   ]
    * }
    *
    */
@@ -159,7 +167,19 @@ let Game = {
     }
 
     return turn;
-  }
+  },
+
+  addMessage: (chat, user, message) => {
+    // Limit length of user to 20 chars and message to 200 chars
+    user = user.substr(0, 20)
+    message = message.substr(0, 200)
+
+    return chat.push(Map({
+      timestamp: Date.now(),
+      user: user,
+      message: message
+    }));
+  },
 }
 
 export {
@@ -179,5 +199,6 @@ export const INITIAL_STATE = Map({
   turn: Map({
     turnNumber: 0,
     team: Game.TEAM_RED
-  })
+  }),
+  chat: List()
 });

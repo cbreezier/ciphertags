@@ -185,7 +185,7 @@ describe('application logic', () => {
   });
 
   describe('unsetMastermind', () => {
-    it('remoevs a player from mastermind', () => {
+    it('removes a player from mastermind', () => {
       let players = Map();
       players = Game.joinTeam(players, Game.TEAM_RED, 'albert');
       players = Game.joinTeam(players, Game.TEAM_RED, 'emma');
@@ -218,6 +218,55 @@ describe('application logic', () => {
           agents: List.of('albert', 'emma')
         })
       }));
+    });
+  });
+
+  describe('addMessage', () => {
+    it('adds a message to chat with user and timestamp', () => {
+      let user = "cat";
+      let message = "meow";
+
+      let chat = Game.addMessage(List.of(Map({
+          timestamp: Date.now(), user: 'Alice', message: 'hi'
+        }), Map({
+          timestamp: Date.now(), user: 'Bob', message: 'hi'
+        })), user, message);
+      expect(chat).to.exist;
+      expect(chat.has(2)).to.be.true;
+
+      let msg = chat.get(2);
+      expect(msg.has('timestamp')).to.be.true;
+      expect(msg.get('timestamp')).to.be.a('number');
+      expect(msg.get('user')).to.equal(user);
+      expect(msg.get('message')).to.equal(message);
+    });
+
+    it('truncates long usernames', () => {
+      let user = "hi-i-have-a-long-username";
+      let message = "meow";
+
+      let chat = Game.addMessage(List(), user, message);
+      expect(chat).to.exist;
+
+      let msg = chat.first();
+      expect(msg.has('timestamp')).to.be.true;
+      expect(msg.get('timestamp')).to.be.a('number');
+      expect(msg.get('user')).to.equal(user.substr(0, 20));
+      expect(msg.get('message')).to.equal(message);
+    });
+
+    it('truncates long messages', () => {
+      let user = "cat";
+      let message = "qewrieutowuqpoeiurpoqweiurpoqiweuroidjaldkxcnzjxkviushfnuawhepurnhawufncdisocjozixdcoijnwioenjaiodnqewrieutowuqpoeiurpoqweiurpoqiweuroidjaldkxcnzjxkviushfnuawhepurnhawufncdisocjozixdcoijnwioenjaiodnas";
+
+      let chat = Game.addMessage(List(), user, message);
+      expect(chat).to.exist;
+
+      let msg = chat.first();
+      expect(msg.has('timestamp')).to.be.true;
+      expect(msg.get('timestamp')).to.be.a('number');
+      expect(msg.get('user')).to.equal(user);
+      expect(msg.get('message')).to.equal(message.substr(0, 200));
     });
   });
 });

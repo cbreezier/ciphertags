@@ -36,7 +36,8 @@ describe('reducer', () => {
       turn: Map({
         turnNumber: 0,
         team: Game.TEAM_RED
-      })
+      }),
+      chat: List()
     }));
   });
 
@@ -73,7 +74,8 @@ describe('reducer', () => {
       turn: Map({
         turnNumber: 0,
         team: Game.TEAM_RED
-      })
+      }),
+      chat: List()
     }));
   });
 });
