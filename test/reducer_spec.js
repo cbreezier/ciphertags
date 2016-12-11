@@ -40,6 +40,36 @@ describe('reducer', () => {
     }));
   });
 
+  it('handles NEW_GAME', () => {
+    let game = Map({
+      turn: Map({
+        turnNumber: 2,
+        team: Game.TEAM_RED,
+        prompt: Map({
+          word: 'test',
+          limit: 2
+        }),
+        guesses: 1
+      })
+    });
+
+    const action = {type: 'NEW_GAME'};
+    const nextState = reducer(game, action);
+
+    expect(nextState.get('players')).to.equal(Map({
+      red: Map({
+        agents: List()
+      }),
+      blue: Map({
+        agents: List()
+      })
+    }));
+    expect(nextState.get('turn')).to.equal(Map({
+      turnNumber: 0,
+      team: Game.TEAM_RED
+    }));
+  });
+
   it('handles SET_CARDS', () => {
     const cards = List.of(
       makeCard('fish', Game.TEAM_RED),
@@ -60,20 +90,18 @@ describe('reducer', () => {
     const action = {type: 'SET_MASTERMIND', team: 'red', player: 'adam'};
     const nextState = reducer(undefined, action);
 
-    expect(nextState).to.equal(Map({
-      players: Map({
-        red: Map({
-          agents: List(),
-          mastermind: 'adam'
-        }),
-        blue: Map({
-          agents: List()
-        })
+    expect(nextState.get('players')).to.equal(Map({
+      red: Map({
+        agents: List(),
+        mastermind: 'adam'
       }),
-      turn: Map({
-        turnNumber: 0,
-        team: Game.TEAM_RED
+      blue: Map({
+        agents: List()
       })
+    }));
+    expect(nextState.get('turn')).to.equal(Map({
+      turnNumber: 0,
+      team: Game.TEAM_RED
     }));
   });
 });

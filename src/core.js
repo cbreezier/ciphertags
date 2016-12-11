@@ -15,6 +15,26 @@ function leaveAll(players, player) {
   return players;
 }
 
+function generateInitialState() {
+  return Map({
+    cards: util.generateRandomCards(),
+    players: Map({
+      red: Map({
+        agents: List()
+      }),
+      blue: Map({
+        agents: List()
+      })
+    }),
+    turn: Map({
+      turnNumber: 0,
+      team: Game.TEAM_RED
+    })
+  });
+}
+
+
+
 let Game = {
   /*
    * Represents the game state, which looks something like:
@@ -55,6 +75,10 @@ let Game = {
   TEAM_BLUE: 'blue',
   ASSASSIN: 'assassin',
   CIVILIAN: 'civilian',
+
+  newGame: (game) => {
+    return generateInitialState();
+  },
 
   setCards: (game, cards) => {
     return game.set('cards', cards);
@@ -166,18 +190,4 @@ export {
   Game
 }
 
-export const INITIAL_STATE = Map({
-  cards: util.generateRandomCards(),
-  players: Map({
-    red: Map({
-      agents: List()
-    }),
-    blue: Map({
-      agents: List()
-    })
-  }),
-  turn: Map({
-    turnNumber: 0,
-    team: Game.TEAM_RED
-  })
-});
+export const INITIAL_STATE = generateInitialState();
