@@ -50,7 +50,8 @@ let Game = {
    *   chat: [
    *     {
    *       timestamp: '1266272460', // Javascript timestamp (Unix timestamp
-   *                                //     in milliseconds)
+   *                                //     in milliseconds) that is recorded on
+   *                                //     the backend
    *       user: 'cat',             // Length limited to 20 chars
    *       message: 'meow'          // Length limited to 200 chars
    *     }
@@ -170,9 +171,10 @@ let Game = {
   },
 
   addMessage: (chat, user, message) => {
-    // Limit length of user to 20 chars and message to 200 chars
-    user = user.substr(0, 20)
-    message = message.substr(0, 200)
+    // Limit length of user to 20 chars and message to 200 chars.
+    // This is to prevent malicious users from spamming the chatbox.
+    user = user.substr(0, 20);
+    message = message.substr(0, 200);
 
     return chat.push(Map({
       timestamp: Date.now(),

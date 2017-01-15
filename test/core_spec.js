@@ -223,10 +223,10 @@ describe('application logic', () => {
 
   describe('addMessage', () => {
     it('adds a message to chat with user and timestamp', () => {
-      let user = "cat";
-      let message = "meow";
+      const user = 'cat';
+      const message = 'meow';
 
-      let chat = Game.addMessage(List.of(Map({
+      const chat = Game.addMessage(List.of(Map({
           timestamp: Date.now(), user: 'Alice', message: 'hi'
         }), Map({
           timestamp: Date.now(), user: 'Bob', message: 'hi'
@@ -234,7 +234,7 @@ describe('application logic', () => {
       expect(chat).to.exist;
       expect(chat.has(2)).to.be.true;
 
-      let msg = chat.get(2);
+      const msg = chat.get(2);
       expect(msg.has('timestamp')).to.be.true;
       expect(msg.get('timestamp')).to.be.a('number');
       expect(msg.get('user')).to.equal(user);
@@ -242,8 +242,8 @@ describe('application logic', () => {
     });
 
     it('truncates long usernames', () => {
-      let user = "hi-i-have-a-long-username";
-      let message = "meow";
+      let user = 'hi-i-have-a-long-username';
+      let message = 'meow';
 
       let chat = Game.addMessage(List(), user, message);
       expect(chat).to.exist;
@@ -256,8 +256,8 @@ describe('application logic', () => {
     });
 
     it('truncates long messages', () => {
-      let user = "cat";
-      let message = "qewrieutowuqpoeiurpoqweiurpoqiweuroidjaldkxcnzjxkviushfnuawhepurnhawufncdisocjozixdcoijnwioenjaiodnqewrieutowuqpoeiurpoqweiurpoqiweuroidjaldkxcnzjxkviushfnuawhepurnhawufncdisocjozixdcoijnwioenjaiodnas";
+      let user = 'cat';
+      let message = 'a'.repeat(250);
 
       let chat = Game.addMessage(List(), user, message);
       expect(chat).to.exist;
